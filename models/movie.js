@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { URL_REG_EXP } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {

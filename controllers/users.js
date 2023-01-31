@@ -1,5 +1,4 @@
-const { find } = require('../models/user')
-const User = require('../models/user')
+const User = require('../models/user');
 
 const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
@@ -19,7 +18,7 @@ module.exports.getCurrentUser = (req, res, next) => {
         next(err);
       }
     });
-}
+};
 
 module.exports.updateProfile = (req, res, next) => {
   const { email, name } = req.body;

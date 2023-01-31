@@ -1,7 +1,12 @@
-const router = require('express').Router();
+const users = require('express').Router();
 const { celebrate, Joi, Segments } = require('celebrate');
 
-users.get('/me', getCurrentUser);
+const { getCurrentUser, updateProfile } = require('../controllers/users');
+
+users.get(
+  '/me',
+  getCurrentUser,
+);
 users.patch('/me', celebrate({
   [Segments.BODY]: Joi.object().keys({
     email: Joi.string().email().required(),
