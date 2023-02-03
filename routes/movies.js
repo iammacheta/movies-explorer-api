@@ -2,6 +2,7 @@ const movies = require('express').Router();
 const { celebrate, Joi, Segments } = require('celebrate');
 
 const { getAllSavedMovies, createMovie, deleteMovie } = require('../controllers/movies');
+const { URL_REG_EXP } = require('../utils/constants');
 
 movies.get('/', getAllSavedMovies);
 
@@ -14,9 +15,9 @@ movies.post(
       duration: Joi.number().required(),
       year: Joi.string().required(),
       description: Joi.string().required(),
-      image: Joi.string().domain().required(),
-      trailerLink: Joi.string().domain().required(),
-      thumbnail: Joi.string().domain().required(),
+      image: Joi.string().regex(URL_REG_EXP).required(),
+      trailerLink: Joi.string().regex(URL_REG_EXP).required(),
+      thumbnail: Joi.string().regex(URL_REG_EXP).required(),
       movieId: Joi.string().required(),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
@@ -29,8 +30,7 @@ movies.delete(
   '/:_id',
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
-      _id: Joi.string().required(),
-      // TODO: добавить? проверки на содержание id фильма (длина, формат)
+      _id: Joi.string().required().hex().length(24),
     }),
   }),
   deleteMovie,
