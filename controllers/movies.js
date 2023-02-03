@@ -38,7 +38,7 @@ module.exports.createMovie = (req, res, next) => {
     image,
     trailerLink,
     thumbnail,
-    movieId,
+    movieId, //  id фильма, который содержится в ответе сервиса MoviesExplorer.
     nameRU,
     nameEN,
   })

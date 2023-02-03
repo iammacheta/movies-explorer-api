@@ -1,5 +1,5 @@
 const users = require('express').Router();
-const { celebrate, Joi, Segments } = require('celebrate');
+const { validateUpdatedData } = require('../middlewares/validation');
 
 const { getCurrentUser, updateProfile } = require('../controllers/users');
 
@@ -7,11 +7,6 @@ users.get(
   '/me',
   getCurrentUser,
 );
-users.patch('/me', celebrate({
-  [Segments.BODY]: Joi.object().keys({
-    email: Joi.string().email().required(),
-    name: Joi.string().required().min(2).max(30),
-  }),
-}), updateProfile);
+users.patch('/me', validateUpdatedData, updateProfile);
 
 module.exports = users;

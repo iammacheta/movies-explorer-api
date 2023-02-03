@@ -45,6 +45,8 @@ module.exports.updateProfile = (req, res, next) => {
         next(new BadRequestError('Переданы некорректные данные'));
       } else if (err.name === 'CastError') {
         next(new BadRequestError('Некорректный id пользователя'));
+      } else if (err.code === UNIQUE_ERROR_CODE) {
+        next(new ConflictError('При регистрации указан email, который уже существует на сервере'));
       } else {
         next(err);
       }
