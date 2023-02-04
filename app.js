@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
 const { limiter } = require('./utils/rateLimit');
@@ -26,6 +27,8 @@ app.use(express.json());
 
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors());
 
 app.post('/signin', validateSingnInData, login);
 app.post('/signup', validateSignUpData, createUser);

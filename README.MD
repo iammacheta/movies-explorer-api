@@ -4,10 +4,10 @@
 
 `npm run dev` - запуск проекта в режиме разработки, с хот-релоадом
 
+**Домен для бэкенда дипломного проекта**
+api.movies-explorer.ichet.nomoredomainsclub.ru
+
 К серверу можно обратиться с помощью https по адресу домена, указанному в README.md. / 3.64
 
-Все роуты подключены в файле index.js, который находится в папке routes. Оттуда единый роут подключается в файле app.js / 2.14
 
-API приложения располагается на домене вида: name.zone/api, а не просто name.zone. / 2.14:
-Подходящий адрес: movies-explorer.nomoreparties.co/api.
-Неподходящий адрес: movies-explorer.nomoreparties.co.
+
