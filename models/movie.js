@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { URL_REG_EXP } = require('../utils/constants');
+const { URL_REG_EXP, MESSAGE_INCORRECT_URL } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -25,16 +25,16 @@ const movieSchema = new mongoose.Schema({
   image: {
     type: String,
     default: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2952&q=80',
-    match: [URL_REG_EXP, 'Некорректный формат ссылки'],
+    match: [URL_REG_EXP, MESSAGE_INCORRECT_URL],
   },
   trailerLink: {
     type: String,
-    match: [URL_REG_EXP, 'Некорректный формат ссылки'],
+    match: [URL_REG_EXP, MESSAGE_INCORRECT_URL],
   },
   thumbnail: {
     type: String,
     default: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2952&q=80',
-    match: [URL_REG_EXP, 'Некорректный формат ссылки'],
+    match: [URL_REG_EXP, MESSAGE_INCORRECT_URL],
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
