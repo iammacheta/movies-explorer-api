@@ -5,13 +5,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
 const { limiter } = require('./utils/rateLimit');
-const { validateSingnInData, validateSignUpData } = require('./middlewares/validation');
-const users = require('./routes/users');
-const movies = require('./routes/movies');
-const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const otherErrors = require('./middlewares/otherErrors');
-const { createUser, login } = require('./controllers/users');
+const router = require('./routes');
 
 const { PORT = 3000, DB_ADDRESS = 'mongodb://localhost:27017/bitfilmsdb' } = process.env;
 
@@ -30,13 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 
-app.post('/signin', validateSingnInData, login);
-app.post('/signup', validateSignUpData, createUser);
-
-app.use(auth);
-
-app.use('/users', users);
-app.use('/movies', movies);
+app.use(router);
 
 app.use(errorLogger);
 
