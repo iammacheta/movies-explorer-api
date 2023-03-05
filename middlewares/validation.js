@@ -41,7 +41,7 @@ const validateNewMovieData = celebrate({
 
 const validateDeletedMovieId = celebrate({
   [Segments.PARAMS]: Joi.object().keys({
-    _id: Joi.string().required().hex().length(24),
+    _id: Joi.string().required(),
   }),
 });
 
