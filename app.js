@@ -13,6 +13,10 @@ const { PORT = 3000, DB_ADDRESS = 'mongodb://localhost:27017/bitfilmsdb' } = pro
 
 const app = express();
 
+const corsOptions = {
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
 mongoose.connect(DB_ADDRESS, { useNewUrlParser: true });
 app.use(helmet());
 app.use(requestLogger);
@@ -24,7 +28,7 @@ app.use(express.json());
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(router);
 
